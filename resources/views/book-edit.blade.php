@@ -5,9 +5,17 @@
 	<div class="container">
 			<h1>Edit Book</h1>
 			
-					
+				@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif	
 
-		<form action="/book/{{ $book->id }}" method="post">
+		<form action="/book/{{ $book->id }}" method="post" enctype="multipart/form-data">
 			@csrf
 			@method("PATCH")
 		<div class="form-group">
@@ -45,9 +53,17 @@
           </select>
         </div>
 
+         <div class="form-group">
+          <label>Image</label>
+          <input type="file" name="rimage"><br><br>
+           <img src="{{'/images/'.$book->cover}}" width="100" height="100"></li>
+        </div>
+
+
 		 <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 	</div>
+
 	
 
 @endsection
