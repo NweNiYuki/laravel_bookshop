@@ -24,10 +24,10 @@
 					@method("DELETE")
 
 				
-					<a href="/category/{{ $category->id }}">
+					<!-- <a href="/category/{{ $category->id }}"> -->
 					<li>Name-{{$category->name }}<br>
 						Remark-{{$category->remark}}
-					</a>
+				
 
 					
 					<button class="btn btn-info">Delete</button>

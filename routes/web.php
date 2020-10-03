@@ -16,3 +16,4 @@
 // });
 
 Route::resource('category', 'CategoryController');
+Route::resource('book', 'BookController');
