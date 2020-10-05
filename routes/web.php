@@ -17,3 +17,13 @@
 
 Route::resource('category', 'CategoryController');
 Route::resource('book', 'BookController');
+Route::get('home', 'HomeController@index');
+Route::get('/', 'PublicController@index');
+Route::get('/detail/{id}', 'PublicController@show');
+
+Route::get('/cart', 'CartController@cart');
+Route::get('add-to-cart/{id}', 'CartController@addToCart');
+
+Auth::routes();
+
+
