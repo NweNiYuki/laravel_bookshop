@@ -2,68 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Book;
 use Illuminate\Http\Request;
+
 
 class CartController extends Controller
 {
-    public function cart()
+    public function index()
     {
-    	return view ('publicviews.cart');
+    	return view('publicviews.index');
     }
 
-    public function addToCart($id)
-    
+    public function store(Request $request)
     {
-        $book = Book::find($id);
 
-        if(!$book) {
 
-            abort(404);
+        \Cart::add($request->id, $request->title, 1, $request->price)->associate('App\Book');
 
-        }
-
-        $cart = session()->get('cart');
-
-        // if cart is empty then this the first product
-        if(!$cart) {
-
-            $cart = [
-                    $id => [
-                        "title" => $book->title,
-                        "quantity" => 1,
-                        "price" => $book->price,
-                        "cover" => $book->cover
-                    ]
-            ];
-
-            session()->put('cart', $cart);
-
-            return redirect()->back()->with('success', 'Book added to cart successfully!');
-        }
-
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-
-            $cart[$id]['quantity']++;
-
-            session()->put('cart', $cart);
-
-            return redirect()->back()->with('success', 'Book added to cart successfully!');
-
-        }
-
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $book->name,
-            "quantity" => 1,
-            "price" => $book->price,
-            "cover" => $book->cover
-        ];
-
-        session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
+    	return back();
     }
 
+
+
+    public function updateCart()
+    {
+        Cart::update(request()->id, request()->qty);
+        return back();
+    }
+
+    public function removeCart($rowId)
+    {
+    	\Cart::remove($rowId);
+
+    	return back()->with('success', 'Item has been removed');
+    }
+}
+
+ 

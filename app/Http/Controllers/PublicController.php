@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function index()
     {
-    	$books =  Book::paginate(6);
+    	$books =  Book::orderBy('id','desc')->paginate(6);
     	return view('publicviews.public_welcome', compact('books'));
     }
 

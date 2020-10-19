@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -21,8 +22,27 @@ Route::get('home', 'HomeController@index');
 Route::get('/', 'PublicController@index');
 Route::get('/detail/{id}', 'PublicController@show');
 
-Route::get('/cart', 'CartController@cart');
-Route::get('add-to-cart/{id}', 'CartController@addToCart');
+// Route::resource('/cart', 'CcartController');
+// Route::get('add-to-cart/{id}', 'CartController@addToCart');
+
+Route::get('/cart', 'CartController@index');
+Route::post('/cart', 'CartController@store');
+Route::post('/cart/update','CartController@updatecart')->name('cart.update');
+Route::get('/cart/remove/{rowId}', 'CartController@removeCart')->name('cart.remove');
+
+// Route::get('/cart/empty', function() {
+// 	Cart::destroy();
+// });
+
+
+// Route::get('/checkout','CheckoutController@index');
+// Route::post('/checkout', 'CheckoutController@store');
+
+Route::resource('/checkout', 'CheckoutController');
+Route::get('/thank', function() {
+
+	return view('publicviews.thank');
+});
 
 Auth::routes();
 

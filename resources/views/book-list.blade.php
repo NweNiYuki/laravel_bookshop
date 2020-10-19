@@ -9,7 +9,7 @@
                 	 <ul class="menu">
                         <li><a href="/book">Manage Books</li>
                         <li><a href="/category">Manage Categories</a></li>
-                        <li>Manage Orders</li>
+                        <li><a href="/order">Manage Orders</li>
 
                         
                     </ul>
