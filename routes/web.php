@@ -30,6 +30,9 @@ Route::post('/cart', 'CartController@store');
 Route::post('/cart/update','CartController@updatecart')->name('cart.update');
 Route::get('/cart/remove/{rowId}', 'CartController@removeCart')->name('cart.remove');
 
+
+Route::get('/order','CustomerOrderController@order')->name('customer.order');
+
 // Route::get('/cart/empty', function() {
 // 	Cart::destroy();
 // });
